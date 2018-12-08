@@ -1,7 +1,6 @@
-
-const Koa = require('koa')
-const consola = require('consola')
-const { Nuxt, Builder } = require('nuxt')
+import Koa from 'koa'
+import consola from 'consola'
+import { Nuxt, Builder } from 'nuxt'
 
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
