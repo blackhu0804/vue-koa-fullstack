@@ -6,23 +6,22 @@
       </el-col>
       <el-col :span="15" class="center">
         <div class="wrapper">
-          <el-input placeholder="搜索商家或地点" />
-          <button class="el-button el-button-primary"><i class="el-icon-search" /></button>
-          <dl class="hotPlace" style="display:none;">
+          <el-input 
+            @focus="focus"
+            @blur="blur"
+            @input="input"
+            v-model="search" 
+            placeholder="搜索商家或地点" 
+            />
+          <button class="el-button el-button--primary"><i class="el-icon-search" /></button>
+          <dl class="hotPlace"
+            v-if="isHotPlace">
             <dt>热门搜索</dt>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
+            <dd v-for="(item, index) in hotPlace" :key="index">{{item}}</dd>
           </dl>
-          <dl class="searchList" style="display:none;"> 
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
+          <dl class="searchList"
+            v-if="isSearchList"> 
+            <dd v-for="(item, index) in searchList" :key="index">{{item}}</dd>
           </dl>
         </div>
         <p class="suggest">
@@ -62,7 +61,38 @@
 </template>
 
 <script>
-  
+  export default {
+    data() {
+      return {
+        isFocus: false,
+        search: '',
+        hotPlace: ["火锅","火锅","火锅","火锅"],
+        searchList: ["故宫","故宫","故宫","故宫","故宫"]
+      }
+    },
+    computed: {
+      isHotPlace: function() {
+        // 聚焦且输入内容为空
+        return this.isFocus && !this.search
+      },
+      isSearchList: function() {
+        return this.isFocus && this.search
+      }
+    },
+    methods: {
+      focus() {
+        this.isFocus = true
+      },
+      blur() {
+        setTimeout( () => {
+          this.isFocus = false
+        }, 200)
+      },
+      input() {
+        console.log('input')
+      }
+    }
+  }
 </script>
 
 <style>
