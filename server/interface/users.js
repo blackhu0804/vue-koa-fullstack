@@ -2,7 +2,7 @@ import Router from 'koa-router'
 import Redis from 'koa-redis'
 import nodeMailer from 'nodemailer'
 
-import User from '../dbs/models/users'
+import User from '../dbs/models/user'
 import Passport from './utils/passport'
 import Email from '../dbs/config'
 import axios from './utils/axios'
@@ -111,7 +111,7 @@ router.post('/signin', async (ctx, next) => {
 })
 
 router.post('/verify', async (ctx, next) => {
-  let user = ctx.request.body.username
+  let username = ctx.request.body.username
   const saveExpire = await Store.hget(`nodemail: ${username}`, 'expire')
   if(saveExpire && new Date().getTime() - saveExpire < 0) {
     ctx.body = {
