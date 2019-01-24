@@ -39,7 +39,7 @@ router.get('/province', async (ctx) => {
   }
 })
 
-router.get('province/:id', async (ctx) => {
+router.get('/province/:id', async (ctx) => {
   // let city = await City.findOne({id: ctx.params.id})
 
   // ctx.body = {
@@ -53,11 +53,17 @@ router.get('province/:id', async (ctx) => {
   //   })
   // }
 
-  let {status, data: { city } } = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?sign=${sign}`)
-  if(status === 200) {
-    ctx.body = { city }
+  let {status, data: {
+      city
+    }} = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?sign=${sign}`)
+  if (status === 200) {
+    ctx.body = {
+      city
+    }
   } else {
-    ctx.body = { city : []}
+    ctx.body = {
+      city: []
+    }
   }
 })
 
