@@ -57,6 +57,9 @@
       color: #666;
       display: inline-block;
       font-size: 14px;
+      &:hover {
+        color: #13D1BE;
+      }
     }
   }
 }
