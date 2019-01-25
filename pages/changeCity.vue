@@ -36,7 +36,7 @@ export default {
     dd {
       cursor: pointer;
       &:hover {
-        color: #41B883;
+        color: #13D1BE;
       }
     }
   }
